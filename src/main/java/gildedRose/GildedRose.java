@@ -1,9 +1,18 @@
 package gildedRose;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class GildedRose {
     Item[] items;
+    List<Item> itemList = new ArrayList<>();
 
     public GildedRose(Item[] items) {
         this.items = items;
+    }
+
+    public Item[] getItems() {
+        return items;
     }
 
     public void updateQuality() {

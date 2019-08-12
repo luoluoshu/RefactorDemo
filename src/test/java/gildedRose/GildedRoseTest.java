@@ -70,4 +70,39 @@ public class GildedRoseTest {
         Assert.assertEquals(sut.getItems()[0].sellIn, -3);
     }
 
+    @Test
+    public void should_return_lower_the_sellIn_and_quality_when_by_one_given_Backstage_passes_to_a_TAFKAL80ETC_concert_items(){
+        GildedRose sut = new GildedRose((Item[]) Arrays.
+                asList(new Item("Backstage passes to a TAFKAL80ETC concert", 11, 12)).toArray());
+        sut.updateQuality();
+        Assert.assertEquals(sut.getItems()[0].quality, 13);
+        Assert.assertEquals(sut.getItems()[0].sellIn, 10);
+    }
+
+    @Test
+    public void should_return_lower_the_sellIn_and_quality_when_by_one_given_Backstage_passes_to_a_TAFKAL80ETC_concert_items_sellIn_10(){
+        GildedRose sut = new GildedRose((Item[]) Arrays.
+                asList(new Item("Backstage passes to a TAFKAL80ETC concert", 10, 12)).toArray());
+        sut.updateQuality();
+        Assert.assertEquals(sut.getItems()[0].quality, 14);
+        Assert.assertEquals(sut.getItems()[0].sellIn, 9);
+    }
+
+    @Test
+    public void should_return_lower_the_sellIn_and_quality_when_by_one_given_Backstage_passes_to_a_TAFKAL80ETC_concert_items_sellIn_5(){
+        GildedRose sut = new GildedRose((Item[]) Arrays.
+                asList(new Item("Backstage passes to a TAFKAL80ETC concert", 5, 12)).toArray());
+        sut.updateQuality();
+        Assert.assertEquals(sut.getItems()[0].quality, 15);
+        Assert.assertEquals(sut.getItems()[0].sellIn, 4);
+    }
+
+    @Test
+    public void should_return_lower_the_sellIn_and_quality_when_by_one_given_Backstage_passes_to_a_TAFKAL80ETC_concert_items_sellIn_0(){
+        GildedRose sut = new GildedRose((Item[]) Arrays.
+                asList(new Item("Backstage passes to a TAFKAL80ETC concert", 0, 12)).toArray());
+        sut.updateQuality();
+        Assert.assertEquals(sut.getItems()[0].quality, 0);
+        Assert.assertEquals(sut.getItems()[0].sellIn, -1);
+    }
 }

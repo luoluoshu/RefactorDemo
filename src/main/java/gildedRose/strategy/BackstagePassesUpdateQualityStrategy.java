@@ -9,6 +9,10 @@ import static gildedRose.ItemValidator.BACKSTAGE_PASSES;
 import static gildedRose.ItemValidator.itemSellDateHasPassed;
 
 public class BackstagePassesUpdateQualityStrategy implements UpdateQualityStrategy {
+
+    public static final int FIRST_SIZE = 11;
+    public static final int SECOND_SIZE = 6;
+
     @Override
     public boolean canHandle(String itemName) {
         return BACKSTAGE_PASSES.equals(itemName);
@@ -18,11 +22,11 @@ public class BackstagePassesUpdateQualityStrategy implements UpdateQualityStrate
     public void handle(Item item) {
         incrementQualityByOne(item);
 
-        if (item.sellIn < 11) {
+        if (item.sellIn < FIRST_SIZE) {
             incrementQualityByOne(item);
         }
 
-        if (item.sellIn < 6) {
+        if (item.sellIn < SECOND_SIZE) {
             incrementQualityByOne(item);
         }
 

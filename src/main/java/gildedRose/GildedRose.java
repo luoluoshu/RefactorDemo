@@ -33,7 +33,7 @@ public class GildedRose {
                     if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         noSulfurasQualitySubOne(items[i]);
                     } else {
-                        items[i].quality = items[i].quality - items[i].quality;
+                        items[i].quality = 0;
                     }
                 } else {
                     addItemQuality(items[i]);

@@ -1,4 +1,10 @@
 package gildedRose.strategy;
 
-public class UpdateQualityStrategy {
+import gildedRose.Item;
+
+public interface UpdateQualityStrategy {
+
+    boolean canHandle(String itemName);
+
+    void handle(Item item);
 }

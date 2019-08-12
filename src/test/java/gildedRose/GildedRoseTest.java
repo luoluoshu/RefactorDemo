@@ -19,9 +19,20 @@ public class GildedRoseTest {
     @Test
     public void should_return_no_change_given_Sulfuras(){
         Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
-        GildedRose sut = new GildedRose((Item[]) Arrays.asList(new Item("Sulfuras, Hand of Ragnaros", 0, 80)).toArray());
+        GildedRose sut = new GildedRose((Item[]) Arrays
+                .asList(new Item("Sulfuras, Hand of Ragnaros", 0, 80)).toArray());
         sut.updateQuality();
         Assert.assertEquals(sut.getItems()[0].quality, 80);
+        Assert.assertEquals(sut.getItems()[0].sellIn, 0);
+    }
+
+    @Test
+    public void should_return_lower_the_sellIn_and_quality_when_by_one_given_normal_items(){
+        GildedRose sut = new GildedRose((Item[]) Arrays.
+                asList(new Item("Normal", 3, 12)).toArray());
+        sut.updateQuality();
+        Assert.assertEquals(sut.getItems()[0].quality, 11);
+        Assert.assertEquals(sut.getItems()[0].sellIn, 2);
     }
 
 }

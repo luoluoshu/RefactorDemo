@@ -105,4 +105,22 @@ public class GildedRoseTest {
         Assert.assertEquals(sut.getItems()[0].quality, 0);
         Assert.assertEquals(sut.getItems()[0].sellIn, -1);
     }
+
+    @Test
+    public void should_return_lower_the_sellIn_and_quality_when_by_one_given_conjured_items(){
+        GildedRose sut = new GildedRose((Item[]) Arrays.
+                asList(new Item("Conjured", 3, 12)).toArray());
+        sut.updateQuality();
+        Assert.assertEquals(sut.getItems()[0].quality, 10);
+        Assert.assertEquals(sut.getItems()[0].sellIn, 2);
+    }
+
+    @Test
+    public void should_return_lower_the_sellIn_and_quality_when_by_one_given_conjured_items_sellIn_negative(){
+        GildedRose sut = new GildedRose((Item[]) Arrays.
+                asList(new Item("Conjured", 0, 12)).toArray());
+        sut.updateQuality();
+        Assert.assertEquals(sut.getItems()[0].quality, 8);
+        Assert.assertEquals(sut.getItems()[0].sellIn, -1);
+    }
 }

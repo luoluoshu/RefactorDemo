@@ -1,8 +1,21 @@
 package gildedRose;
 
+import gildedRose.strategy.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class GildedRose {
     Item[] items;
 //    List<Item> itemList = new ArrayList<>();
+private static List<UpdateQualityStrategy> updateQualityStrategies = new ArrayList<>();
+
+    static {
+        updateQualityStrategies.add(new AgedBrieUpdateQualityStrategy());
+        updateQualityStrategies.add(new BackstagePassesUpdateQualityStrategy());
+        updateQualityStrategies.add(new DefaultUpdateQualityStrategy());
+        updateQualityStrategies.add(new SulfurasUpdateQualityStrategy());
+    }
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -13,34 +26,13 @@ public class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!isAgedBrieAndBackstagePass(items[i])) {
-                noSulfurasQualitySubOne(items[i]);
-            } else {
-                if (items[i].quality < ItemValidator.MAXIMUM_ITEM_QUALITY) {
-                    addItemQuality(items[i]);
-
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        addBackstageQuality(items[i]);
-                    }
-                }
-            }
-
-            noSulfurasSellInSubOne(items[i]);
-
-            if (items[i].sellIn < ItemValidator.MINIMUM_ITEM_QUALITY) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        noSulfurasQualitySubOne(items[i]);
-                    } else {
-                        items[i].quality = ItemValidator.MINIMUM_ITEM_QUALITY;
-                    }
-                } else {
-                    addItemQuality(items[i]);
-                }
-            }
+        for (Item item : items) {
+            updateQualityStrategies.stream()
+                    .filter(strategy -> strategy.canHandle(item.name))
+                    .forEach(strategy -> strategy.handle(item));
         }
     }
+
 
     private void noSulfurasQualitySubOne(Item item) {
         if (item.quality > ItemValidator.MINIMUM_ITEM_QUALITY) {

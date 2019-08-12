@@ -14,6 +14,7 @@ private static List<UpdateQualityStrategy> updateQualityStrategies = new ArrayLi
         updateQualityStrategies.add(new BackstagePassesUpdateQualityStrategy());
         updateQualityStrategies.add(new DefaultUpdateQualityStrategy());
         updateQualityStrategies.add(new SulfurasUpdateQualityStrategy());
+        updateQualityStrategies.add(new ConjuredUpdateQualityStrategy());
     }
 
     public GildedRose(Item[] items) {

@@ -35,4 +35,13 @@ public class GildedRoseTest {
         Assert.assertEquals(sut.getItems()[0].sellIn, 2);
     }
 
+    @Test
+    public void should_return_lower_the_sellIn_and_quality_when_by_one_given_normal_items_sellIn_negative(){
+        GildedRose sut = new GildedRose((Item[]) Arrays.
+                asList(new Item("Normal", 0, 12)).toArray());
+        sut.updateQuality();
+        Assert.assertEquals(sut.getItems()[0].quality, 10);
+        Assert.assertEquals(sut.getItems()[0].sellIn, -1);
+    }
+
 }

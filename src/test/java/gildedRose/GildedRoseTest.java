@@ -61,4 +61,13 @@ public class GildedRoseTest {
         Assert.assertEquals(sut.getItems()[0].sellIn, -3);
     }
 
+    @Test
+    public void should_return_lower_the_sellIn_and_higher_quality_when_by_one_given_Aged_Brie_items_quality_50(){
+        GildedRose sut = new GildedRose((Item[]) Arrays.
+                asList(new Item("Aged Brie", -2, 50)).toArray());
+        sut.updateQuality();
+        Assert.assertEquals(sut.getItems()[0].quality, 50);
+        Assert.assertEquals(sut.getItems()[0].sellIn, -3);
+    }
+
 }

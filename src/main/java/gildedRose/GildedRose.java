@@ -1,6 +1,8 @@
 package gildedRose;
 
 public class GildedRose {
+    public static final int MAXIMUM_ITEM_QUALITY = 50;
+    public static final int MINIMUM_ITEM_QUALITY = 0;
     Item[] items;
 //    List<Item> itemList = new ArrayList<>();
 
@@ -17,7 +19,7 @@ public class GildedRose {
             if (!isAgedBrieAndBackstagePass(items[i])) {
                 noSulfurasQualitySubOne(items[i]);
             } else {
-                if (items[i].quality < 50) {
+                if (items[i].quality < MAXIMUM_ITEM_QUALITY) {
                     addItemQuality(items[i]);
 
                     if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
@@ -28,12 +30,12 @@ public class GildedRose {
 
             noSulfurasSellInSubOne(items[i]);
 
-            if (items[i].sellIn < 0) {
+            if (items[i].sellIn < MINIMUM_ITEM_QUALITY) {
                 if (!items[i].name.equals("Aged Brie")) {
                     if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         noSulfurasQualitySubOne(items[i]);
                     } else {
-                        items[i].quality = 0;
+                        items[i].quality = MINIMUM_ITEM_QUALITY;
                     }
                 } else {
                     addItemQuality(items[i]);
@@ -43,7 +45,7 @@ public class GildedRose {
     }
 
     private void noSulfurasQualitySubOne(Item item) {
-        if (item.quality > 0) {
+        if (item.quality > MINIMUM_ITEM_QUALITY) {
             if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
                 item.quality = item.quality - 1;
             }
@@ -67,7 +69,7 @@ public class GildedRose {
     }
 
     private void addItemQuality(Item item) {
-        if (item.quality < 50) {
+        if (item.quality < MAXIMUM_ITEM_QUALITY) {
             item.quality = item.quality + 1;
         }
     }
